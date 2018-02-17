@@ -11,9 +11,9 @@ data class MyDate(val year: Int, val month: Int, val dayOfMonth: Int) : Comparab
 operator fun MyDate.rangeTo(other: MyDate): DateRange = DateRange(this, other)
 
 operator fun MyDate.plus(time: TimeInterval): MyDate = when (time) {
-    TimeInterval.DAY -> MyDate(this.year, this.month, this.dayOfMonth + 1)
-    TimeInterval.WEEK -> MyDate(this.year, this.month, this.dayOfMonth + 7)
-    TimeInterval.YEAR -> MyDate(this.year + 1, this.month, this.dayOfMonth)
+    TimeInterval.DAY -> addTimeIntervals(TimeInterval.DAY, 1)
+    TimeInterval.WEEK -> addTimeIntervals(TimeInterval.DAY, 7)
+    TimeInterval.YEAR -> addTimeIntervals(TimeInterval.YEAR, 1)
 }
 
 operator fun MyDate.plus(time: RepeatedTimeInterval): MyDate = addTimeIntervals(time.ti, time.n)
